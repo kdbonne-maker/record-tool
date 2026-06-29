@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>자율·자치활동 특기사항 생성기</title>
+<title>자율·자치활동 특기사항 생성기 (오프라인)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -25,7 +25,7 @@
   html,body{margin:0;padding:0}
   body{font-family:var(--sans); color:var(--ink); background:var(--paper); font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;}
   button{font-family:inherit; cursor:pointer}
-  textarea,input,select{font-family:inherit; color:var(--ink)}
+  textarea,input{font-family:inherit; color:var(--ink)}
   ::selection{background:var(--pine-tint)}
 
   header.app{border-bottom:1px solid var(--line); background:var(--paper); position:sticky; top:0; z-index:20;}
@@ -40,13 +40,9 @@
 
   main{max-width:1180px; margin:0 auto; padding:24px}
 
-  .rule-banner{background:var(--amber-tint); border:1px solid #EFE0B8; color:#6E5210; border-radius:var(--radius); padding:12px 15px; font-size:13px; line-height:1.6; margin-bottom:20px; display:flex; gap:10px;}
-  .rule-banner b{color:var(--amber)}
-  .rule-banner svg{width:17px;height:17px;flex:0 0 auto;margin-top:2px;color:var(--amber)}
-  details.rules summary{cursor:pointer; font-size:13px; font-weight:700; color:var(--pine-deep); list-style:none; outline:none;}
-  details.rules summary::-webkit-details-marker{display:none}
-  details.rules[open] summary{margin-bottom:8px}
-  details.rules ul{margin:0; padding-left:18px; color:#6E5210; font-size:12.5px; line-height:1.7}
+  .rule-banner{background:var(--pine-tint); border:1px solid #CFE3DA; color:var(--pine-deep); border-radius:var(--radius); padding:12px 15px; font-size:13px; line-height:1.6; margin-bottom:20px; display:flex; gap:10px;}
+  .rule-banner b{font-weight:700}
+  .rule-banner svg{width:17px;height:17px;flex:0 0 auto;margin-top:2px}
 
   .grid{display:grid; grid-template-columns: 1fr; gap:20px}
   @media(min-width:980px){ .grid{grid-template-columns: 0.92fr 1.08fr} }
@@ -60,12 +56,9 @@
   .hint{font-size:12px; color:var(--ink-faint); margin:0 0 12px}
   .sub-label{font-size:12px;font-weight:700;color:var(--ink-soft);margin:0 0 7px}
 
-  label.fld{display:block; font-size:12.5px; font-weight:700; color:var(--ink-soft); margin:0 0 6px}
   .input, textarea.input{width:100%; border:1px solid var(--line); border-radius:6px; background:#FCFCFA; padding:9px 11px; font-size:14px; transition:.15s; resize:vertical;}
   .input:focus, textarea.input:focus{outline:none; border-color:var(--pine); box-shadow:0 0 0 3px var(--pine-tint); background:#fff;}
-  textarea.input{min-height:60px; line-height:1.55}
 
-  /* preset (자료1) */
   .preset-wrap{border:1px dashed var(--line); border-radius:8px; padding:12px; background:#FCFBF7; margin-bottom:14px; max-height:230px; overflow:auto;}
   .preset-row{display:flex; flex-wrap:wrap; gap:6px}
   .chip{border:1px solid var(--line); background:#fff; color:var(--ink-soft); border-radius:20px; padding:5px 11px; font-size:12px; font-weight:600; transition:.13s; white-space:nowrap;}
@@ -82,7 +75,6 @@
   .btn{border:none; border-radius:6px; padding:9px 14px; font-size:13.5px; font-weight:700; display:inline-flex; align-items:center; justify-content:center; gap:7px; transition:.15s;}
   .btn-primary{background:var(--pine); color:#fff}
   .btn-primary:hover{background:var(--pine-deep)}
-  .btn-primary:disabled{background:#A9BDB5; cursor:not-allowed}
   .btn-soft{background:var(--pine-tint); color:var(--pine-deep)}
   .btn-soft:hover{background:#DCE9E2}
   .btn-line{background:#fff; border:1px solid var(--line); color:var(--ink-soft)}
@@ -94,7 +86,6 @@
   .custom-add{display:flex; gap:8px; margin-top:8px}
   .custom-add input.cdate{flex:0 0 96px}
 
-  /* roster */
   .roster{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px}
   .stu-tab{border:1px solid var(--line); background:#fff; border-radius:6px; padding:6px 10px; font-size:12.5px; font-weight:600; color:var(--ink-soft); display:inline-flex; align-items:center; gap:6px; transition:.12s;}
   .stu-tab:hover{border-color:var(--pine)}
@@ -106,7 +97,7 @@
   .stu-add{display:flex; gap:8px}
   .stu-add input.num{flex:0 0 64px}
   .stu-add input.nm{flex:1}
-  .uploader{display:flex; gap:8px; align-items:center; margin-bottom:12px}
+  .uploader{display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap}
 
   .empty-note{text-align:center; color:var(--ink-faint); font-size:13px; padding:24px 10px; border:1px dashed var(--line); border-radius:6px; background:#FCFBF7;}
 
@@ -115,97 +106,43 @@
   .stu-editor .who .n{color:var(--pine); margin-right:6px}
   .stu-del-btn{margin-left:auto}
 
-  /* keyword groups */
   .kw-group{border:1px solid var(--line-soft); border-radius:7px; padding:11px 12px; margin-bottom:10px; background:#fff;}
   .kw-group .gh{font-size:12.5px; font-weight:700; margin-bottom:8px; color:var(--ink);}
   .kw-group .gh .gd{color:var(--pine); font-weight:700}
-  .kw-group.trait{background:#FCFBF7}
+  .kw-group.closing{background:#FCFBF7}
   .kw-chips{display:flex; flex-wrap:wrap; gap:6px}
-  .kw{border:1px solid var(--line); background:#fff; color:var(--ink-soft); border-radius:18px; padding:5px 11px; font-size:12px; font-weight:600; transition:.1s; user-select:none;}
+  .kw{border:1px solid var(--line); background:#fff; color:var(--ink-soft); border-radius:18px; padding:5px 11px; font-size:12px; font-weight:600; transition:.1s; user-select:none; text-align:left;}
   .kw:hover{border-color:var(--pine)}
   .kw.on{background:var(--pine); border-color:var(--pine); color:#fff}
   .kw-add{border:1px dashed var(--line); color:var(--ink-faint); background:#fff; border-radius:18px; padding:5px 10px; font-size:12px; font-weight:600;}
   .kw-add:hover{border-color:var(--pine); color:var(--pine)}
 
-  .result-box{width:100%; min-height:200px; border:1px solid var(--line); border-radius:6px; padding:14px 16px 14px 18px; font-size:14.5px; line-height:1.85; resize:vertical; background:var(--card); border-left:3px solid var(--pine);}
+  .result-box{width:100%; min-height:210px; border:1px solid var(--line); border-radius:6px; padding:14px 16px 14px 18px; font-size:14.5px; line-height:1.9; resize:vertical; background:var(--card); border-left:3px solid var(--pine);}
   .result-box:focus{outline:none; box-shadow:0 0 0 3px var(--pine-tint)}
   .result-box::placeholder{color:var(--ink-faint)}
-  .counter{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:9px; font-size:12px; color:var(--ink-soft);}
-  .counter .nums{display:flex; gap:12px}
-  .counter .nums b{color:var(--ink); font-variant-numeric:tabular-nums}
-  .counter.over .target{color:var(--danger); font-weight:700}
+  .counter{display:flex; align-items:center; gap:14px; margin-top:9px; font-size:12px; color:var(--ink-soft);}
+  .counter b{color:var(--ink); font-variant-numeric:tabular-nums}
   .result-actions{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
-
-  .spinner{width:15px;height:15px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%; animation:spin .7s linear infinite; display:inline-block}
-  .btn-soft .spinner{border-color:rgba(35,79,66,.3); border-top-color:var(--pine-deep)}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .loading{display:inline-flex; align-items:center; gap:8px}
 
   .toast{position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--ink); color:#fff; padding:11px 18px; border-radius:8px; font-size:13.5px; font-weight:600; opacity:0; pointer-events:none; transition:.25s; z-index:60; box-shadow:0 8px 24px rgba(0,0,0,.18);}
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
   .toast.err{background:var(--danger)}
-
-  .overlay{position:fixed; inset:0; background:rgba(32,39,46,.45); backdrop-filter:blur(2px); display:none; align-items:center; justify-content:center; z-index:50; padding:20px;}
-  .overlay.show{display:flex}
-  .modal{background:var(--card); border-radius:12px; width:100%; max-width:440px; box-shadow:0 20px 60px rgba(0,0,0,.25); overflow:hidden;}
-  .modal-head{padding:20px 22px 0}
-  .modal-head h3{font-family:var(--serif); font-size:18px; margin:0 0 4px}
-  .modal-head p{color:var(--ink-soft); font-size:12.5px; margin:0; line-height:1.6}
-  .modal-body{padding:18px 22px 22px}
-  .key-link{color:var(--pine); font-weight:700; text-decoration:none}
-  .key-link:hover{text-decoration:underline}
-  .check-row{display:flex; align-items:center; gap:8px; margin-top:12px; font-size:12.5px; color:var(--ink-soft)}
-  .check-row input{width:15px;height:15px;accent-color:var(--pine)}
-  .modal-foot{display:flex; gap:8px; margin-top:18px}
-  .seg{display:flex; border:1px solid var(--line); border-radius:6px; overflow:hidden}
-  .seg button{flex:1; border:none; background:#fff; padding:8px; font-size:12.5px; font-weight:600; color:var(--ink-soft)}
-  .seg button.on{background:var(--pine); color:#fff}
-  .keynote{font-size:11.5px; color:var(--ink-faint); margin-top:10px; line-height:1.55}
-
-  .gate{max-width:430px; margin:8vh auto; text-align:center; padding:0 20px;}
-  .gate .mark{font-family:var(--serif); font-size:15px; color:var(--pine); font-weight:700; letter-spacing:.04em;}
-  .gate h2{font-family:var(--serif); font-size:24px; margin:10px 0 8px}
-  .gate p{color:var(--ink-soft); font-size:14px; margin:0 0 22px}
-  .gate .card{padding:20px; text-align:left}
   .hide{display:none !important}
+  .keynote{font-size:11.5px; color:var(--ink-faint); margin:0; line-height:1.55}
 </style>
 </head>
 <body>
 
-<!-- ====== API KEY GATE ====== -->
-<div id="gate" class="gate">
-  <div class="mark">매홀중학교 · 담임 업무 도구</div>
-  <h2>자율·자치활동 특기사항 생성기</h2>
-  <p>활동을 고르고, 학생별 키워드를 클릭하면<br/>특기사항 초안이 만들어집니다.</p>
-  <div class="card">
-    <div class="card-body">
-      <label class="fld" for="gateKey">Anthropic API 키</label>
-      <input class="input" id="gateKey" type="password" placeholder="sk-ant-..." autocomplete="off" />
-      <div class="check-row">
-        <input type="checkbox" id="gateSave" />
-        <label for="gateSave" style="margin:0;cursor:pointer">이 브라우저에 키 저장 (개인 PC에서만 권장)</label>
-      </div>
-      <button class="btn btn-primary btn-full" id="gateEnter" style="margin-top:16px">시작하기</button>
-      <p class="keynote">키는 Anthropic 콘솔 <a class="key-link" href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">API Keys</a>에서 발급합니다(결제·크레딧 등록 필요). 키는 이 브라우저에서 Anthropic 서버로만 전송됩니다.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ====== APP ====== -->
-<div id="app" class="hide">
 <header class="app">
   <div class="header-inner">
     <div class="brand">
       <h1>자율·자치활동 특기사항 생성기</h1>
-      <div class="sub">자료1 활동 · 키워드 클릭 입력 · 생성 후 직접 수정</div>
+      <div class="sub">오프라인 · 키워드 클릭으로 문장 조합 · API 키 불필요</div>
       <div class="rule"></div>
     </div>
     <div class="header-actions">
-      <button class="ghost-btn" id="exportBtn" title="작성 완료된 학생을 CSV로 내보내기">
+      <button class="ghost-btn" id="exportBtn" title="작성한 학생을 CSV로 내보내기">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>내보내기
-      </button>
-      <button class="ghost-btn" id="settingsBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>설정
       </button>
     </div>
   </div>
@@ -213,18 +150,8 @@
 
 <main>
   <div class="rule-banner">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-    <div>
-      <details class="rules">
-        <summary>학생부 기재 원칙 — 생성 시 자동 반영됩니다 ▾</summary>
-        <ul>
-          <li>교사가 직접 <b>관찰·확인한 사실과 행동</b>만 기술 (추측·내면·가정환경 제외)</li>
-          <li>'우수함·훌륭함' 같은 <b>단정적 평가어 대신</b> 구체적 역할·태도·변화로 서술</li>
-          <li>학생이 직접 쓴 듯한 <b>1인칭·자기소개식 표현</b> 지양</li>
-          <li><b>명사형 종결</b>('~을 맡아 ~함.', '~하는 모습을 보임.') · 활동명은 <b>활동명(2026.MM.DD.)</b> 형식</li>
-        </ul>
-      </details>
-    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+    <div>인터넷·API 키·비용 없이 동작합니다. 키워드를 클릭하면 미리 다듬어 둔 문구가 <b>활동명(2026.MM.DD.)</b> 형식·명사형으로 조합됩니다. 생성 후 사실에 맞게 직접 수정해 쓰세요.</div>
   </div>
 
   <div class="grid">
@@ -233,7 +160,7 @@
       <div class="card">
         <div class="card-head"><h2>① 활동 선택</h2><span class="badge">자료1</span></div>
         <div class="card-body">
-          <p class="hint">학급 전체가 참여한 활동을 클릭해 등록하세요. 날짜는 <b>활동명(2026.MM.DD.)</b> 형식으로 자동 입력됩니다.</p>
+          <p class="hint">학급 전체가 참여한 활동을 클릭해 등록하세요.</p>
           <div class="preset-wrap"><div class="preset-row" id="presetRow"></div></div>
           <div id="activityList"></div>
           <div class="custom-add">
@@ -253,7 +180,7 @@
               엑셀·CSV 업로드
             </button>
             <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" class="hide" />
-            <span class="keynote" style="margin:0">번호·이름 두 열이면 됩니다.</span>
+            <span class="keynote">번호·이름 두 열이면 됩니다.</span>
           </div>
           <div class="roster" id="roster"></div>
           <div class="stu-add">
@@ -267,7 +194,7 @@
 
     <!-- RIGHT -->
     <div class="card">
-      <div class="card-head"><h2>③ 특기사항 작성</h2><span class="badge" id="targetBadge">목표 500자</span></div>
+      <div class="card-head"><h2>③ 특기사항 작성</h2></div>
       <div class="card-body">
         <div id="noStudent" class="empty-note">학생을 추가하고 선택하면 여기에서 작성합니다.</div>
 
@@ -281,21 +208,18 @@
           <div id="kwGroups"></div>
 
           <button class="btn btn-primary btn-full" id="generateBtn" style="margin-top:6px">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3v4M3 5h4M6 17v4M4 19h4M13 3l2.5 6.5L22 12l-6.5 2.5L13 21l-2.5-6.5L4 12l6.5-2.5L13 3z"/></svg>
-            특기사항 생성
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 3l2.5 6.5L22 12l-6.5 2.5L13 21l-2.5-6.5L4 12l6.5-2.5L13 3z"/></svg>
+            특기사항 만들기
           </button>
 
           <div style="margin-top:18px">
-            <label class="fld">생성 결과 <span style="font-weight:500;color:var(--ink-faint)">— 자유롭게 수정하세요</span></label>
-            <textarea class="result-box" id="resultBox" placeholder="키워드를 고르고 생성 버튼을 누르면 활동별 문장이 여기에 나타납니다. 사실과 다른 부분은 반드시 확인·수정하세요."></textarea>
-            <div class="counter" id="counter">
-              <div class="nums"><span><b id="cChar">0</b>자</span><span><b id="cByte">0</b>바이트</span></div>
-              <span class="target">목표 <b id="cTarget">500</b>자</span>
-            </div>
+            <label class="sub-label">생성 결과 — 자유롭게 수정하세요</label>
+            <textarea class="result-box" id="resultBox" placeholder="키워드를 고르고 '특기사항 만들기'를 누르면 활동별 문장이 여기에 조합됩니다."></textarea>
+            <div class="counter"><span><b id="cChar">0</b>자</span><span><b id="cByte">0</b>바이트</span></div>
             <div class="result-actions">
               <button class="btn btn-soft" id="regenBtn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>
-                다시 생성
+                다시 조합
               </button>
               <button class="btn btn-line" id="copyBtn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -308,41 +232,14 @@
     </div>
   </div>
 </main>
-</div>
-
-<!-- ====== SETTINGS ====== -->
-<div class="overlay" id="overlay">
-  <div class="modal">
-    <div class="modal-head"><h3>설정</h3><p>API 키·모델·목표 글자 수를 설정합니다.</p></div>
-    <div class="modal-body">
-      <label class="fld" for="setKey">Anthropic API 키</label>
-      <input class="input" id="setKey" type="password" placeholder="sk-ant-..." autocomplete="off" />
-      <div class="check-row"><input type="checkbox" id="setSave" /><label for="setSave" style="margin:0;cursor:pointer">이 브라우저에 저장</label></div>
-      <div class="fld" style="margin-top:18px">모델</div>
-      <div class="seg" id="modelSeg">
-        <button data-model="claude-sonnet-4-6" class="on">균형 (Sonnet)</button>
-        <button data-model="claude-opus-4-8">정교 (Opus)</button>
-        <button data-model="claude-haiku-4-5-20251001">빠름 (Haiku)</button>
-      </div>
-      <label class="fld" for="setTarget" style="margin-top:18px">학생당 목표 글자 수</label>
-      <input class="input" id="setTarget" type="number" min="100" max="1500" step="50" value="500" />
-      <p class="keynote">자율·자치활동 영역 <b>전체</b> 입력 한도(바이트)는 매년 학교생활기록부 기재요령에서 확인하세요.</p>
-      <div class="modal-foot">
-        <button class="btn btn-line btn-full" id="closeSettings">닫기</button>
-        <button class="btn btn-primary btn-full" id="saveSettings">저장</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 (function(){
   "use strict";
-  const LS={key:"jajul_apikey",model:"jajul_model",target:"jajul_target",acts:"jajul_acts2",studs:"jajul_studs2"};
+  const LS={acts:"jajul_off_acts",studs:"jajul_off_studs"};
 
-  // ---- 자료1 활동 프리셋 ----
   const ACTIVITY_PRESETS=[
     {name:"학급회의",date:"2026.03.03"},{name:"개학식",date:"2026.03.03"},
     {name:"학생 인권 교육",date:"2026.03.03"},{name:"과학실 안전교육",date:"2026.03.03"},
@@ -357,7 +254,6 @@
     {name:"방학식",date:"2026.07.21"}
   ];
 
-  // ---- 키워드 뱅크 ----
   const KEYWORDS={
     회의:["회장 역할","부회장 역할","안건 발의","회의 진행","회의 기록(서기)",
       "월요일 청소","화요일 청소","수요일 청소","목요일 청소","금요일 청소",
@@ -376,9 +272,92 @@
     과학의날:["주제 발표","대회 참가","작품 제작"],
     기타:[]
   };
-  const TRAIT_CHIPS=["맡은 역할을 꾸준히 함","끝까지 참여함","친구를 배려함","주도적으로 이끎",
-    "스스로 실천함","적극적으로 발표함","차분하게 정리함","협력함","솔선수범함","세심하게 관리함"];
 
+  const LEADER={
+    "회장 역할":"1학기 학급자치회 회장(2026.03.01.-2026.08.17.)으로서 학급회의 안건을 정하고 회의를 진행하며 후보 공약을 실천함.",
+    "부회장 역할":"1학기 학급자치회 부회장(2026.03.01.-2026.08.17.)으로서 회의 안건을 정하고 회의 내용을 기록하며 회장을 도와 학급 일을 운영함."
+  };
+
+  const PHRASES={
+    // 학급회의 / 자치
+    "안건 발의":"학급 생활과 관련된 안건을 발의함",
+    "회의 진행":"회의를 진행하며 친구들의 의견을 조율함",
+    "회의 기록(서기)":"서기를 맡아 회의 내용을 기록함",
+    "월요일 청소":"1인 1역으로 월요일 청소 역할을 맡아 1학기 동안 청결한 학습 환경을 정비함",
+    "화요일 청소":"1인 1역으로 화요일 청소 역할을 맡아 1학기 동안 청결한 학습 환경을 정비함",
+    "수요일 청소":"1인 1역으로 수요일 청소 역할을 맡아 1학기 동안 청결한 학습 환경을 정비함",
+    "목요일 청소":"1인 1역으로 목요일 청소 역할을 맡아 1학기 동안 청결한 학습 환경을 정비함",
+    "금요일 청소":"1인 1역으로 금요일 청소 역할을 맡아 1학기 동안 청결한 학습 환경을 정비함",
+    "분리수거":"1인 1역으로 분리수거 역할을 맡아 매주 재활용품을 배출하고 수거함을 깨끗이 관리함",
+    "칠판 관리":"1인 1역으로 칠판 관리 역할을 맡아 쉬는 시간마다 판서를 지우고 분필을 채워 둠",
+    "게시판 관리":"1인 1역으로 게시판 관리 역할을 맡아 학급 공지와 안내 자료를 유형별로 정리하여 게시함",
+    "전등·냉난방 관리":"1인 1역으로 전등·냉난방 관리 역할을 맡아 이동 수업 때마다 전원을 꺼 전기를 절약함",
+    "휴대전화 가방 관리":"1인 1역으로 휴대전화 가방 관리 역할을 맡아 기기를 수거·보관하여 분실을 예방함",
+    "학급물품 관리":"1인 1역으로 학급물품 관리 역할을 맡아 부족한 물품을 채우고 망가진 물품을 교체함",
+    "창문 관리":"1인 1역으로 창문 관리 역할을 맡아 수시로 환기하여 청결한 실내 공기를 관리함",
+    "출석부 관리(우체부)":"1인 1역으로 출석부 관리 역할을 맡아 이동 수업 때마다 출석부를 챙기고 제자리에 둠",
+    "시건장치 관리(문지기)":"1인 1역으로 문지기 역할을 맡아 자물쇠와 열쇠를 관리하여 학급 도난 사고를 예방함",
+    "선풍기 청소·점검":"여름철 사용을 위하여 선풍기를 분리하여 먼지를 닦고 점검함",
+    // 어울마당
+    "여러 종목 참여":"여러 종목의 경기에 참여하며 친구들과 어울림",
+    "달리기":"달리기 종목에 참여하여 끝까지 완주함",
+    "줄다리기":"줄다리기 종목에 참여하여 경기가 끝날 때까지 줄을 당김",
+    "다인다각":"다인다각 종목에 참여하며 경기 규칙을 지킴",
+    "응원 주도":"학급 응원을 주도하며 친구들과 함께 경기를 응원함",
+    "응원석 끝까지":"더운 날씨에도 응원석을 지키며 끝까지 행사에 참여함",
+    "도시락 만들어 나눔":"점심 도시락을 직접 만들어 친구들과 나누어 먹으며 경기를 응원함",
+    "대기장소 청소":"학급별 대기 장소를 청소하며 주변을 정리정돈함",
+    "단체복 준비":"학급 단체복을 준비하여 나누어 주고 응원을 준비함",
+    "기념사진 촬영":"친구들과 함께 기념사진을 촬영하며 행사에 참여함",
+    "질서 지도":"응원 깃발을 들고 줄 세우기를 도우며 안전사고를 예방하도록 질서 지도에 참여함",
+    "스승의 날 편지":"선생님께 스승의 날 감사 편지를 써서 전달함",
+    // 인권·교권
+    "존중·협력 관계 발표":"학생과 교사가 서로 존중하고 협력하는 관계임을 발표함",
+    "실천 방법 발표":"안전한 교육활동을 위하여 자신이 실천할 수 있는 방법을 발표함",
+    "실천 약속 세우기":"서로 존중하는 태도를 주제로 실천 약속을 세움",
+    "사례 조사·발표":"존중과 배려가 필요한 사례를 조사하여 발표함",
+    "소감문 작성":"교육 내용을 바탕으로 소감문을 작성함",
+    // 학폭
+    "예방 사례 조사":"학교폭력 예방과 관련된 사례를 조사함",
+    "예방 다짐 발표":"학교폭력을 예방하기 위한 다짐을 발표함",
+    "역할극 참여":"예방 역할극에 참여하여 상황별 대처 방법을 익힘",
+    "캠페인 문구 작성":"예방 캠페인 문구를 작성함",
+    // 장애
+    "장애 이해 체험":"장애 이해 체험 활동에 참여함",
+    "배려 실천 방법 발표":"서로 배려하며 함께 살아가기 위한 실천 방법을 발표함",
+    // 정서
+    "감정 표현 활동":"자신의 감정을 표현하는 활동에 참여함",
+    "스트레스 대처법 발표":"스트레스에 대처하는 방법을 발표함",
+    "친구 돕는 방법 작성":"어려움을 겪는 친구를 돕는 방법을 정리하여 작성함",
+    // 성
+    "예방 수칙 정리":"성폭력 예방 수칙을 정리함",
+    "올바른 경계 발표":"서로 존중하는 올바른 경계의 중요성을 발표함",
+    // 약물
+    "사례 조사":"약물 오남용과 관련된 청소년 건강 문제 사례를 조사함",
+    "심각성 조사":"약물 오남용이 지닌 심각성을 조사함",
+    "원인·해결방안 조사":"관련 건강 문제의 원인과 해결 방안을 조사함",
+    "뉴스 자료 조사":"관련 뉴스 자료를 조사함",
+    // 스마트폰
+    "사용 습관 점검":"자신의 인터넷·스마트폰 사용 습관을 점검함",
+    "건강 문제 조사":"과의존과 관련된 청소년 건강 문제를 조사함",
+    "사용 규칙 세우기":"올바른 사용을 위한 규칙을 세움",
+    // 안전
+    "안전 수칙 숙지":"안전 수칙을 숙지함",
+    "대피 요령 익힘":"상황별 대피 요령을 익힘",
+    "실습·실험 안전수칙 준수":"실습·실험 과정에서 안전 수칙을 준수함",
+    // 과학의 날
+    "주제 발표":"관련 주제를 탐구하여 발표함",
+    "대회 참가":"대회에 참가함",
+    "작품 제작":"관련 작품을 제작함"
+  };
+
+  const CLOSINGS=[
+    "맡은 역할을 책임감 있게 수행하고 친구들과 협력하는 모습을 꾸준히 보임.",
+    "학급 활동에 성실하게 참여하며 맡은 일을 끝까지 해냄.",
+    "친구들을 배려하고 솔선수범하는 모습을 보임."
+  ];
+
+  const EDU=["인권교권","학폭","장애","정서","성","약물","스마트폰","안전"];
   function categorize(name){
     if(/학급회의/.test(name)) return "회의";
     if(/어울마당/.test(name)) return "어울마당";
@@ -394,15 +373,7 @@
     return "기타";
   }
 
-  // ---- state ----
-  const state={
-    apiKey:localStorage.getItem(LS.key)||"",
-    model:localStorage.getItem(LS.model)||"claude-sonnet-4-6",
-    target:parseInt(localStorage.getItem(LS.target)||"500",10),
-    activities:load(LS.acts,[]),
-    students:load(LS.studs,[]),
-    currentId:null
-  };
+  const state={activities:load(LS.acts,[]),students:load(LS.studs,[]),currentId:null};
   function load(k,d){try{return JSON.parse(localStorage.getItem(k))||d;}catch(e){return d;}}
   function persist(){localStorage.setItem(LS.acts,JSON.stringify(state.activities));localStorage.setItem(LS.studs,JSON.stringify(state.students));}
   function uid(){return Math.random().toString(36).slice(2,9);}
@@ -411,27 +382,13 @@
   function bytes(s){let b=0;for(const ch of (s||"")) b+=ch.codePointAt(0)>127?3:1;return b;}
   function esc(s){return (s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function shortDate(d){const p=d.split(".");return parseInt(p[1],10)+"/"+parseInt(p[2],10);}
-  function fmtDate(d){return "("+d+".)";} // 활동명(2026.MM.DD.)
+  function fmtDate(d){return "("+d+".)";}
 
   let toastT;
-  function toast(msg,isErr){const t=$("#toast");t.textContent=msg;t.className="toast show"+(isErr?" err":"");clearTimeout(toastT);toastT=setTimeout(()=>{t.className="toast";},2600);}
+  function toast(msg,isErr){const t=$("#toast");t.textContent=msg;t.className="toast show"+(isErr?" err":"");clearTimeout(toastT);toastT=setTimeout(()=>{t.className="toast";},2400);}
 
-  // ---- gate ----
-  function showApp(){
-    $("#gate").classList.add("hide");$("#app").classList.remove("hide");
-    renderPresets();renderActivities();renderRoster();renderEditor();syncTarget();
-  }
-  $("#gateEnter").addEventListener("click",()=>{
-    const k=$("#gateKey").value.trim();
-    if(!k){toast("API 키를 입력하세요.",true);return;}
-    state.apiKey=k;
-    if($("#gateSave").checked) localStorage.setItem(LS.key,k);
-    showApp();
-  });
-  $("#gateKey").addEventListener("keydown",e=>{if(e.key==="Enter")$("#gateEnter").click();});
-
-  // ---- presets / activities ----
-  function activityExists(name,date){return state.activities.some(a=>a.name===name&&a.date===date);}
+  // presets / activities
+  function activityExists(n,d){return state.activities.some(a=>a.name===n&&a.date===d);}
   function renderPresets(){
     const row=$("#presetRow");row.innerHTML="";
     ACTIVITY_PRESETS.forEach(p=>{
@@ -448,13 +405,10 @@
   }
   function renderActivities(){
     const list=$("#activityList");list.innerHTML="";
-    if(state.activities.length===0){
-      list.innerHTML='<p class="hint" style="margin:6px 0 10px">위에서 활동을 클릭해 등록하세요.</p>';return;
-    }
+    if(state.activities.length===0){list.innerHTML='<p class="hint" style="margin:6px 0 10px">위에서 활동을 클릭해 등록하세요.</p>';return;}
     state.activities.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(a=>{
       const div=document.createElement("div");div.className="activity";
-      div.innerHTML='<button class="act-del" title="삭제">&times;</button>'+
-        '<div class="act-title">'+esc(a.name)+'<span class="date">'+fmtDate(a.date)+'</span></div>';
+      div.innerHTML='<button class="act-del" title="삭제">&times;</button><div class="act-title">'+esc(a.name)+'<span class="date">'+fmtDate(a.date)+'</span></div>';
       div.querySelector(".act-del").addEventListener("click",()=>{
         state.activities=state.activities.filter(x=>x.id!==a.id);
         state.students.forEach(s=>{if(s.sel)delete s.sel[a.id];});
@@ -466,17 +420,16 @@
   $("#addCustom").addEventListener("click",()=>{
     const name=$("#cName").value.trim();const raw=$("#cDate").value.trim();
     if(!name){toast("활동명을 입력하세요.",true);return;}
-    let date="";
     const m=raw.match(/(\d{1,2})[\/.](\d{1,2})/);
-    if(m) date="2026."+String(m[1]).padStart(2,"0")+"."+String(m[2]).padStart(2,"0");
-    else {toast("날짜는 MM/DD 형식으로 입력하세요.",true);return;}
+    if(!m){toast("날짜는 MM/DD 형식으로 입력하세요.",true);return;}
+    const date="2026."+String(m[1]).padStart(2,"0")+"."+String(m[2]).padStart(2,"0");
     if(activityExists(name,date)){toast("이미 추가된 활동입니다.");return;}
     state.activities.push({id:uid(),name,date});
     $("#cName").value="";$("#cDate").value="";
     persist();renderPresets();renderActivities();renderEditor();
   });
 
-  // ---- students ----
+  // students
   function renderRoster(){
     const r=$("#roster");r.innerHTML="";
     if(state.students.length===0){r.innerHTML='<span style="color:var(--ink-faint);font-size:12.5px">등록된 학생이 없습니다.</span>';return;}
@@ -492,7 +445,7 @@
   function addStudent(){
     const name=$("#newName").value.trim();const num=$("#newNum").value.trim();
     if(!name){toast("이름을 입력하세요.",true);return;}
-    const s={id:uid(),num,name,sel:{},traits:[],result:""};
+    const s={id:uid(),num,name,sel:{},closing:"",result:""};
     state.students.push(s);state.currentId=s.id;
     $("#newName").value="";$("#newNum").value="";
     persist();renderRoster();renderEditor();$("#newNum").focus();
@@ -509,7 +462,7 @@
   });
   function current(){return state.students.find(s=>s.id===state.currentId)||null;}
 
-  // ---- excel/csv upload ----
+  // excel/csv
   $("#uploadBtn").addEventListener("click",()=>$("#fileInput").click());
   $("#fileInput").addEventListener("change",e=>{
     const file=e.target.files[0];if(!file)return;
@@ -520,162 +473,103 @@
         const ws=wb.Sheets[wb.SheetNames[0]];
         const rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:""}).filter(r=>r.some(c=>String(c).trim()!==""));
         if(rows.length===0){toast("빈 파일입니다.",true);return;}
-        // 헤더 탐지
         let start=0,numCol=0,nameCol=1;
         const head=rows[0].map(c=>String(c).trim());
         const findCol=(keys)=>head.findIndex(h=>keys.some(k=>h.includes(k)));
         const nc=findCol(["번호","번","No","no","NO"]);
         const mc=findCol(["이름","성명","name","Name","NAME"]);
-        if(nc>=0||mc>=0){start=1; if(nc>=0)numCol=nc; if(mc>=0)nameCol=mc; if(nc<0)numCol=(nameCol===0?1:0); if(mc<0)nameCol=(numCol===0?1:0);}
+        if(nc>=0||mc>=0){start=1;if(nc>=0)numCol=nc;if(mc>=0)nameCol=mc;if(nc<0)numCol=(nameCol===0?1:0);if(mc<0)nameCol=(numCol===0?1:0);}
         const parsed=[];
         for(let i=start;i<rows.length;i++){
           const row=rows[i];
           const num=String(row[numCol]!=null?row[numCol]:"").trim();
           const name=String(row[nameCol]!=null?row[nameCol]:"").trim();
-          if(!name) continue;
-          parsed.push({num,name});
+          if(!name) continue;parsed.push({num,name});
         }
         if(parsed.length===0){toast("번호·이름을 찾지 못했습니다.",true);return;}
-        if(state.students.length>0 && !confirm("기존 명단("+state.students.length+"명)을 파일 내용("+parsed.length+"명)으로 교체할까요?")){return;}
-        state.students=parsed.map(p=>({id:uid(),num:p.num,name:p.name,sel:{},traits:[],result:""}));
+        if(state.students.length>0 && !confirm("기존 명단("+state.students.length+"명)을 파일 내용("+parsed.length+"명)으로 교체할까요?"))return;
+        state.students=parsed.map(p=>({id:uid(),num:p.num,name:p.name,sel:{},closing:"",result:""}));
         state.currentId=state.students[0].id;
-        persist();renderRoster();renderEditor();
-        toast(parsed.length+"명을 불러왔습니다.");
+        persist();renderRoster();renderEditor();toast(parsed.length+"명을 불러왔습니다.");
       }catch(err){toast("파일을 읽지 못했습니다. 형식을 확인하세요.",true);}
       finally{$("#fileInput").value="";}
     };
     reader.readAsArrayBuffer(file);
   });
 
-  // ---- editor (keyword groups) ----
+  // editor
   function renderEditor(){
     const s=current();
     if(!s){$("#noStudent").classList.remove("hide");$("#stuEditor").classList.add("hide");return;}
     $("#noStudent").classList.add("hide");$("#stuEditor").classList.remove("hide");
-    $("#whoNum").textContent=s.num?(s.num+"번"):"";
-    $("#whoName").textContent=s.name;
-    if(!s.sel)s.sel={};if(!s.traits)s.traits=[];
+    $("#whoNum").textContent=s.num?(s.num+"번"):"";$("#whoName").textContent=s.name;
+    if(!s.sel)s.sel={};
     const wrap=$("#kwGroups");wrap.innerHTML="";
-
     const acts=state.activities.slice().sort((a,b)=>a.date.localeCompare(b.date));
-    if(acts.length===0){
-      wrap.innerHTML='<p class="hint">먼저 ① 활동을 등록하면 활동별 키워드가 나타납니다.</p>';
-    }
+    if(acts.length===0) wrap.innerHTML='<p class="hint">먼저 ① 활동을 등록하면 활동별 키워드가 나타납니다.</p>';
     acts.forEach(a=>{
       const cat=categorize(a.name);const chips=KEYWORDS[cat]||[];
-      if(chips.length===0) return; // 개학식/방학식 등은 생략
+      if(chips.length===0) return;
       const sel=s.sel[a.id]||[];
       const g=document.createElement("div");g.className="kw-group";
       let html='<div class="gh">'+esc(a.name)+'<span class="gd"> '+fmtDate(a.date)+'</span></div><div class="kw-chips">';
       chips.forEach(kw=>{html+='<button class="kw'+(sel.includes(kw)?" on":"")+'" data-kw="'+esc(kw)+'">'+esc(kw)+'</button>';});
-      html+='<button class="kw-add" data-add="1">+ 직접</button></div>';
-      g.innerHTML=html;
+      html+='</div>';g.innerHTML=html;
       g.querySelectorAll(".kw").forEach(btn=>{
         btn.addEventListener("click",()=>{
-          const kw=btn.getAttribute("data-kw");
-          let arr=s.sel[a.id]||[];
+          const kw=btn.getAttribute("data-kw");let arr=s.sel[a.id]||[];
           if(arr.includes(kw)) arr=arr.filter(x=>x!==kw); else arr=arr.concat([kw]);
           s.sel[a.id]=arr;persist();btn.classList.toggle("on");
         });
       });
-      g.querySelector(".kw-add").addEventListener("click",()=>{
-        const v=prompt("직접 입력할 내용(키워드):");if(!v)return;
-        const kw=v.trim();if(!kw)return;
-        s.sel[a.id]=(s.sel[a.id]||[]).concat([kw]);persist();renderEditor();
-      });
       wrap.appendChild(g);
     });
-
-    // 관찰 태도
-    const tg=document.createElement("div");tg.className="kw-group trait";
-    let th='<div class="gh">관찰 태도 (공통)</div><div class="kw-chips">';
-    TRAIT_CHIPS.forEach(kw=>{th+='<button class="kw'+(s.traits.includes(kw)?" on":"")+'" data-trait="'+esc(kw)+'">'+esc(kw)+'</button>';});
-    th+='</div>';tg.innerHTML=th;
-    tg.querySelectorAll(".kw").forEach(btn=>{
+    // closing
+    const cg=document.createElement("div");cg.className="kw-group closing";
+    let ch='<div class="gh">마무리 문장 (선택, 하나)</div><div class="kw-chips">';
+    CLOSINGS.forEach(c=>{ch+='<button class="kw'+(s.closing===c?" on":"")+'" data-closing="'+esc(c)+'">'+esc(c)+'</button>';});
+    ch+='</div>';cg.innerHTML=ch;
+    cg.querySelectorAll(".kw").forEach(btn=>{
       btn.addEventListener("click",()=>{
-        const kw=btn.getAttribute("data-trait");
-        if(s.traits.includes(kw)) s.traits=s.traits.filter(x=>x!==kw); else s.traits.push(kw);
-        persist();btn.classList.toggle("on");
+        const c=btn.getAttribute("data-closing");
+        s.closing=(s.closing===c)?"":c;persist();renderEditor();
       });
     });
-    wrap.appendChild(tg);
-
+    wrap.appendChild(cg);
     $("#resultBox").value=s.result||"";updateCounter();
   }
   $("#resultBox").addEventListener("input",e=>{const s=current();if(s){s.result=e.target.value;persist();}updateCounter();renderRoster();});
 
-  // ---- counter ----
-  function updateCounter(){
-    const v=$("#resultBox").value;
-    $("#cChar").textContent=chars(v);$("#cByte").textContent=bytes(v);$("#cTarget").textContent=state.target;
-    $("#counter").classList.toggle("over",chars(v)>state.target);
-  }
-  function syncTarget(){$("#targetBadge").textContent="목표 "+state.target+"자";$("#cTarget").textContent=state.target;updateCounter();}
+  function updateCounter(){const v=$("#resultBox").value;$("#cChar").textContent=chars(v);$("#cByte").textContent=bytes(v);}
 
-  // ---- generation ----
-  function buildPrompt(s){
+  // assemble (offline)
+  function sentenceFor(a,kw){
+    if(LEADER[kw]) return LEADER[kw];
+    const cat=categorize(a.name);
+    const conn=EDU.includes(cat)?"을 통하여 ":"에서 ";
+    const pred=PHRASES[kw]||(kw+"함");
+    return a.name+fmtDate(a.date)+conn+pred+".";
+  }
+  function assemble(s){
     const acts=state.activities.slice().sort((a,b)=>a.date.localeCompare(b.date));
-    const lines=[];
-    acts.forEach(a=>{
-      const sel=(s.sel&&s.sel[a.id])||[];
-      if(sel.length===0) return;
-      lines.push("- "+a.name+fmtDate(a.date)+": "+sel.join(", "));
-    });
-    const body=lines.length?lines.join("\n"):"(선택된 활동 키워드 없음)";
-    const traits=(s.traits&&s.traits.length)?s.traits.join(", "):"(선택 없음)";
-    return "[활동별 선택 키워드]\n"+body+"\n\n[관찰 태도] "+traits+
-      "\n\n[목표 글자 수] 약 "+state.target+"자\n\n"+
-      "위 정보를 바탕으로 학생 '"+s.name+"'의 자율·자치활동 특기사항 초안을 작성해 주세요.";
+    const out=[];
+    acts.forEach(a=>{(s.sel[a.id]||[]).forEach(kw=>{if(LEADER[kw]&&out.indexOf(LEADER[kw])<0)out.push(LEADER[kw]);});});
+    acts.forEach(a=>{(s.sel[a.id]||[]).forEach(kw=>{if(!LEADER[kw])out.push(sentenceFor(a,kw));});});
+    if(s.closing) out.push(s.closing);
+    return out.join("\n");
   }
-  const SYSTEM=[
-    "당신은 대한민국 중학교 담임교사의 학교생활기록부 '자율·자치활동' 특기사항 작성을 돕는 도구입니다.",
-    "다음 원칙을 반드시 지킵니다.",
-    "1. 교사가 직접 관찰·확인할 수 있는 사실과 행동만 기술한다. 추측·가정·학생의 내면·가정환경은 쓰지 않는다.",
-    "2. '훌륭함·매우 우수함·뛰어남' 같은 단정적 평가어 대신 학생이 한 구체적 활동·역할·태도로 서술한다.",
-    "3. 학생이 스스로 쓴 듯한 1인칭·자기소개식·포부 표현을 쓰지 않는다.",
-    "4. 학생부 문체인 명사형으로 종결한다. 예: '~을 맡아 ~함.', '~하는 모습을 보임.', '~에 참여함.'",
-    "5. 제시된 활동마다 1~2문장씩 작성하고, 활동은 반드시 '활동명(2026.MM.DD.)' 형식을 그대로 사용한다(끝 마침표 포함).",
-    "6. 조사를 정확히 쓴다. 예: '예방교육을 통하여'(O), '예방교육를 통하여'(X), '경기에 참여함'(O).",
-    "7. 제시된 키워드를 자연스러운 활동 서술로 풀어 쓰되, 키워드에 없는 사실을 지어내지 않는다.",
-    "8. 관찰 태도는 활동 서술에 녹여 표현하고, 지정된 목표 글자 수에 맞춰 ±10% 내외로 분량을 조절한다.",
-    "활동마다 줄바꿈하여 한 줄에 한 활동을 적는다. 출력은 특기사항 본문만 제시하고 머리말·설명·따옴표를 덧붙이지 않는다."
-  ].join("\n");
-
-  async function generate(){
+  function generate(){
     const s=current();if(!s)return;
-    const hasSel=s.sel&&Object.values(s.sel).some(a=>a&&a.length);
-    if(!hasSel&&(!s.traits||!s.traits.length)){toast("키워드를 먼저 선택하세요.",true);return;}
-    const btn=$("#generateBtn"),rebtn=$("#regenBtn");
-    const o1=btn.innerHTML,o2=rebtn.innerHTML;
-    btn.disabled=true;rebtn.disabled=true;
-    btn.innerHTML='<span class="loading"><span class="spinner"></span>생성 중…</span>';
-    rebtn.innerHTML='<span class="loading"><span class="spinner"></span>생성 중…</span>';
-    try{
-      const res=await fetch("https://api.anthropic.com/v1/messages",{
-        method:"POST",
-        headers:{"content-type":"application/json","x-api-key":state.apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
-        body:JSON.stringify({model:state.model,max_tokens:1200,system:SYSTEM,messages:[{role:"user",content:buildPrompt(s)}]})
-      });
-      if(!res.ok){
-        let detail="";try{const j=await res.json();detail=(j.error&&j.error.message)||"";}catch(e){}
-        if(res.status===401) throw new Error("API 키가 올바르지 않습니다. 설정에서 확인하세요.");
-        if(res.status===429) throw new Error("요청이 많습니다. 잠시 후 다시 시도하세요.");
-        if(res.status===400&&/credit|balance/i.test(detail)) throw new Error("크레딧 잔액을 확인하세요.");
-        if(res.status===404) throw new Error("모델을 찾을 수 없습니다. 설정에서 다른 모델을 선택하세요.");
-        throw new Error("생성 실패 ("+res.status+") "+detail);
-      }
-      const data=await res.json();
-      const text=(data.content||[]).filter(b=>b.type==="text").map(b=>b.text).join("\n").trim();
-      if(!text) throw new Error("응답이 비어 있습니다. 다시 시도하세요.");
-      s.result=text;persist();$("#resultBox").value=text;updateCounter();renderRoster();
-      toast("초안을 생성했습니다. 사실 확인 후 다듬어 주세요.");
-    }catch(err){toast(err.message||"오류가 발생했습니다.",true);}
-    finally{btn.disabled=false;rebtn.disabled=false;btn.innerHTML=o1;rebtn.innerHTML=o2;}
+    const any=Object.values(s.sel||{}).some(a=>a&&a.length)||s.closing;
+    if(!any){toast("키워드를 먼저 선택하세요.",true);return;}
+    s.result=assemble(s);persist();
+    $("#resultBox").value=s.result;updateCounter();renderRoster();
+    toast("문장을 조합했습니다. 사실에 맞게 다듬어 주세요.");
   }
   $("#generateBtn").addEventListener("click",generate);
   $("#regenBtn").addEventListener("click",generate);
 
-  // ---- copy / export ----
+  // copy / export
   $("#copyBtn").addEventListener("click",async()=>{
     const v=$("#resultBox").value;if(!v.trim()){toast("복사할 내용이 없습니다.",true);return;}
     try{await navigator.clipboard.writeText(v);toast("복사했습니다.");}
@@ -685,40 +579,16 @@
     const done=state.students.filter(s=>s.result&&s.result.trim());
     if(done.length===0){toast("내보낼 특기사항이 없습니다.",true);return;}
     let csv="\ufeff번호,이름,특기사항,글자수,바이트\n";
-    done.forEach(s=>{
-      const r=(s.result||"").replace(/\r?\n/g," ").replace(/"/g,'""');
-      csv+=[s.num||"",'"'+s.name+'"','"'+r+'"',chars(s.result),bytes(s.result)].join(",")+"\n";
-    });
+    done.forEach(s=>{const r=(s.result||"").replace(/\r?\n/g," ").replace(/"/g,'""');
+      csv+=[s.num||"",'"'+s.name+'"','"'+r+'"',chars(s.result),bytes(s.result)].join(",")+"\n";});
     const blob=new Blob([csv],{type:"text/csv;charset=utf-8"});
     const a=document.createElement("a");a.href=URL.createObjectURL(blob);
     a.download="자율자치활동_특기사항.csv";a.click();URL.revokeObjectURL(a.href);
     toast(done.length+"명 내보냈습니다.");
   });
 
-  // ---- settings ----
-  const overlay=$("#overlay");
-  function openSettings(){
-    $("#setKey").value=state.apiKey;$("#setSave").checked=!!localStorage.getItem(LS.key);$("#setTarget").value=state.target;
-    document.querySelectorAll("#modelSeg button").forEach(b=>b.classList.toggle("on",b.dataset.model===state.model));
-    overlay.classList.add("show");
-  }
-  $("#settingsBtn").addEventListener("click",openSettings);
-  $("#closeSettings").addEventListener("click",()=>overlay.classList.remove("show"));
-  overlay.addEventListener("click",e=>{if(e.target===overlay)overlay.classList.remove("show");});
-  document.querySelectorAll("#modelSeg button").forEach(b=>{
-    b.addEventListener("click",()=>{document.querySelectorAll("#modelSeg button").forEach(x=>x.classList.remove("on"));b.classList.add("on");});
-  });
-  $("#saveSettings").addEventListener("click",()=>{
-    const k=$("#setKey").value.trim();if(k)state.apiKey=k;
-    const sel=document.querySelector("#modelSeg button.on");if(sel)state.model=sel.dataset.model;
-    const t=parseInt($("#setTarget").value,10);if(t>=100&&t<=1500)state.target=t;
-    localStorage.setItem(LS.model,state.model);localStorage.setItem(LS.target,String(state.target));
-    if($("#setSave").checked&&state.apiKey) localStorage.setItem(LS.key,state.apiKey); else localStorage.removeItem(LS.key);
-    syncTarget();overlay.classList.remove("show");toast("설정을 저장했습니다.");
-  });
-
-  // ---- boot ----
-  if(state.apiKey){showApp();}
+  // boot
+  renderPresets();renderActivities();renderRoster();renderEditor();
 })();
 </script>
 </body>
